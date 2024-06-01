@@ -5,3 +5,4 @@ settings.ini
 /lua.bat
 /lua_modules
 /.luarocks
+.vscode/settings.json

@@ -1,10 +1,13 @@
+if not reaper.ImGui_GetBuiltinPath then
+    reaper.MB("Missing dependency: ReaImGui extension.\nDownload it via Reapack ReaTeam extension repository.", "Error", 0)
+    return reaper.ReaPack_BrowsePackages('dear imgui')
+end
+
+package.path = reaper.ImGui_GetBuiltinPath() .. '/?.lua'
+im = require 'imgui' '0.9.1'
+
 local workspace_folder = debug.getinfo(1).source:match("@(.*[/\\])")
 package.path = package.path .. ';' .. workspace_folder ..'?.lua'
-
-if not reaper.ImGui_CreateContext then
-    reaper.MB("Missing dependency: ReaImGui extension.\nDownload it via Reapack ReaTeam extension repository.", "Error", 0)
-    return false
-end
 
 require('src.std+')
 local INTERFACE = require('src.interface')
